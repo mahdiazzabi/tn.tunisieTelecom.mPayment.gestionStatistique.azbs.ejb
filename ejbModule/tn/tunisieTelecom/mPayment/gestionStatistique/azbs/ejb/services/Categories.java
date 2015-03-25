@@ -41,20 +41,28 @@ public class Categories implements CategoriesRemote, CategoriesLocal {
 	public void add(
 			tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Categories categories) {
 		entityManager.persist(categories);
-		
+
 	}
 
 	@Override
 	public void update(
 			tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Categories categories) {
 		entityManager.merge(categories);
-		
+
 	}
 
 	@Override
 	public void delete(
 			tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Categories categories) {
 		entityManager.remove(entityManager.merge(categories));
+	}
+
+	@Override
+	public tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Categories findById(
+			int id) {
+		return entityManager
+				.find(tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Categories.class,
+						id);
 	}
 
 }

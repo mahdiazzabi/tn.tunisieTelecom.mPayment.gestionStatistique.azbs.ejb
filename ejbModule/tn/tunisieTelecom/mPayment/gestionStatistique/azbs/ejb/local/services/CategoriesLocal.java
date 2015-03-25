@@ -15,4 +15,5 @@ public interface CategoriesLocal {
 	public void update(Categories categories);
 	
 	public void delete(Categories categories);
+	public Categories findById(int id);
 }

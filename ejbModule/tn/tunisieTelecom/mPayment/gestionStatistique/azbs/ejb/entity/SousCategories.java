@@ -2,35 +2,34 @@ package tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity;
 
 import java.io.Serializable;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.*;
 
 /**
- * Entity implementation class for Entity: Categories
+ * Entity implementation class for Entity: SousCategories
  *
  */
 @Entity
-public class Categories implements Serializable {
+public class SousCategories implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 	private String libelle;
-	@OneToMany(mappedBy="categories")
-	private List<SousCategories> sousCategories = new ArrayList<SousCategories>();
+	@ManyToOne
+	private Categories categories = new Categories();
 	private static final long serialVersionUID = 1L;
 
-	public Categories() {
+	public SousCategories() {
 		super();
 	}
-	public List<SousCategories> getSousCategories() {
-		return sousCategories;
+
+	public Categories getCategories() {
+		return categories;
 	}
 
-	public void setSousCategories(List<SousCategories> sousCategories) {
-		this.sousCategories = sousCategories;
+	public void setCategories(Categories categories) {
+		this.categories = categories;
 	}
 
 	public int getId() {
