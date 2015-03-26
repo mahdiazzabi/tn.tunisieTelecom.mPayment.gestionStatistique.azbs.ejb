@@ -2,13 +2,16 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb">
 	
-	<jta-data-source>java:/pfeAzabiDS</jta-data-source>
+	<jta-data-source>java:/pfeDS</jta-data-source>
 	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Admin</class>
+	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Categories</class>
 	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Employees</class>
+	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Produit</class>
+	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.SousCategories</class>
 	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.User</class>
 	
 	<properties>
-		<property name="hibernate.hbm2ddl.auto" value="create"/>
+		<property name="hibernate.hbm2ddl.auto" value="update"/>
 		<property name="hibernate.show_sql" value="true"/>
 		<property name="hibernate.format_sql" value="true"/>
 	</properties>

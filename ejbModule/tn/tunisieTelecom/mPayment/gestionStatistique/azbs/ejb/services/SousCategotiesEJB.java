@@ -7,6 +7,7 @@ import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Categories;
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.SousCategories;
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.local.services.SousCategotiesEJBLocal;
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.services.remote.SousCategotiesEJBRemote;
@@ -48,6 +49,11 @@ public class SousCategotiesEJB implements SousCategotiesEJBRemote,
 	@Override
 	public void remove(SousCategories sousCategories) {
 		entityManager.remove(entityManager.merge(sousCategories));
+	}
+
+	@Override
+	public SousCategories findById(int id) {
+		return entityManager.find(SousCategories.class, id);
 	}
 
 }

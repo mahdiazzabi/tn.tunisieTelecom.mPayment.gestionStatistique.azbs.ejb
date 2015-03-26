@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Categories;
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.SousCategories;
 
 @Local
@@ -15,4 +16,6 @@ public interface SousCategotiesEJBLocal {
 	public void update(SousCategories sousCategories);
 
 	public void remove(SousCategories sousCategories);
+	public SousCategories findById(int id);
+
 }

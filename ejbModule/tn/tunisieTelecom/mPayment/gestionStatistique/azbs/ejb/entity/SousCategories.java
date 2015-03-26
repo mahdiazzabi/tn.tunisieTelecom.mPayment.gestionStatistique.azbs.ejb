@@ -2,6 +2,8 @@ package tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity;
 
 import java.io.Serializable;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -18,6 +20,9 @@ public class SousCategories implements Serializable {
 	private String libelle;
 	@ManyToOne
 	private Categories categories = new Categories();
+	@OneToMany(mappedBy="sousCategories")
+	private List<Produit> produits = new ArrayList<Produit>();
+	
 	private static final long serialVersionUID = 1L;
 
 	public SousCategories() {
