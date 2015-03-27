@@ -2,6 +2,9 @@ package tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity;
 
 import java.io.Serializable;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -17,6 +20,9 @@ public class Banque implements Serializable {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private int id;
 	private String nom;
+	
+	@OneToMany (mappedBy="banque")
+	private List<Transaction> transactions = new ArrayList<Transaction>();
 	
 	
 	private static final long serialVersionUID = 1L;
@@ -37,6 +43,12 @@ public class Banque implements Serializable {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+	public List<Transaction> getTransactions() {
+		return transactions;
+	}
+	public void setTransactions(List<Transaction> transactions) {
+		this.transactions = transactions;
 	}
    
 }

@@ -5,6 +5,9 @@ import java.lang.Integer;
 import java.lang.String;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -23,6 +26,9 @@ public class Produit implements Serializable {
 	private String libelle;
 	@ManyToOne
 	private SousCategories sousCategories = new SousCategories() ;
+	@OneToMany(mappedBy="produit")
+	private List<Transaction> transactions = new ArrayList<Transaction>();
+	
 	
 	public SousCategories getCategories() {
 		return sousCategories;
@@ -62,5 +68,12 @@ public class Produit implements Serializable {
 	public void setRef(Integer ref) {
 		this.ref = ref;
 	}
+	public List<Transaction> getTransactions() {
+		return transactions;
+	}
+	public void setTransactions(List<Transaction> transactions) {
+		this.transactions = transactions;
+	}
+	
    
 }

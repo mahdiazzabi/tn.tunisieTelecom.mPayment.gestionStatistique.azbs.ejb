@@ -43,4 +43,19 @@ public class UserEJB implements UserEJBRemote, UserEJBLocal {
 
 	}
 
+	@Override
+	public void add(User user) {
+		entityManager.persist(user);
+	}
+
+	@Override
+	public void update(User user) {
+		entityManager.merge(user);
+	}
+
+	@Override
+	public void delete(User user) {
+		entityManager.remove(entityManager.merge(user));
+	}
+
 }
