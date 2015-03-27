@@ -32,11 +32,13 @@ public class ProduitEJB implements ProduitEJBRemote, ProduitEJBLocal {
 
 	@Override
 	public void add(Produit produit) {
+	
 		entityManager.persist(produit);
 	}
 
 	@Override
 	public void update(Produit produit) {
+		entityManager.merge(produit);
 		
 	}
 

@@ -4,6 +4,7 @@
 	
 	<jta-data-source>java:/pfeDS</jta-data-source>
 	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Admin</class>
+	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Banque</class>
 	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Categories</class>
 	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Employees</class>
 	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Produit</class>

@@ -17,8 +17,9 @@ public class Produit implements Serializable {
 
 	   
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
-	
+	private Integer ref ;
 	private String libelle;
 	@ManyToOne
 	private SousCategories sousCategories = new SousCategories() ;
@@ -54,6 +55,12 @@ public class Produit implements Serializable {
 	}
 	public void setSousCategories(SousCategories sousCategories) {
 		this.sousCategories = sousCategories;
+	}
+	public Integer getRef() {
+		return ref;
+	}
+	public void setRef(Integer ref) {
+		this.ref = ref;
 	}
    
 }
