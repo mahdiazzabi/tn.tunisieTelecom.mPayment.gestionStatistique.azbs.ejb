@@ -17,6 +17,8 @@ public interface BanqueEJBLocal {
 	
 	public void delete(Banque banque);
 	
+	public Banque findById(int id);
+	
 	public List<Banque> findAll();
 	
 	

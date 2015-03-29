@@ -49,5 +49,10 @@ public class BanqueEJB implements BanqueEJBRemote, BanqueEJBLocal {
 		return entityManager.createQuery("SELECT b FROM Banque b", Banque.class).getResultList();
 	}
 
+	@Override
+	public Banque findById(int id) {
+		return entityManager.find(Banque.class, id);
+	}
+
 	
 }
