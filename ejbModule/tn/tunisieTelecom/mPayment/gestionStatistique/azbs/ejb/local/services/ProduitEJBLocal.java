@@ -20,6 +20,7 @@ public interface ProduitEJBLocal {
 	
 	public Produit findByLibelle(String libelle);
 	
+	public Produit findByref(Integer id);
 	
 	
 
