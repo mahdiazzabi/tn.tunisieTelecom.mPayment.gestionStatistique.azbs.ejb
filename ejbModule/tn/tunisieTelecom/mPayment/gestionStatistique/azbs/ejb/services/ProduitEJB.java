@@ -52,4 +52,10 @@ public class ProduitEJB implements ProduitEJBRemote, ProduitEJBLocal {
 		return entityManager.createQuery("SELECT p FROM Produit p",Produit.class).getResultList();
 	}
 
+	@Override
+	public Produit findByLibelle(String libelle) {
+		
+		return entityManager.find(Produit.class, libelle);
+	}
+
 }

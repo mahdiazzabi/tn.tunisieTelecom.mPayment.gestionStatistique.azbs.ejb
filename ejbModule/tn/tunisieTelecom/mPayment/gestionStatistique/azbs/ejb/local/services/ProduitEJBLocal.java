@@ -18,6 +18,8 @@ public interface ProduitEJBLocal {
 	
 	public List<Produit> findall();
 	
+	public Produit findByLibelle(String libelle);
+	
 	
 	
 
