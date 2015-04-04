@@ -1,5 +1,6 @@
 package tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.services;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -7,6 +8,8 @@ import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Banque;
+import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.User;
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.local.services.CategoriesLocal;
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.services.remote.CategoriesRemote;
 
@@ -64,5 +67,7 @@ public class Categories implements CategoriesRemote, CategoriesLocal {
 				.find(tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Categories.class,
 						id);
 	}
+
+	
 
 }

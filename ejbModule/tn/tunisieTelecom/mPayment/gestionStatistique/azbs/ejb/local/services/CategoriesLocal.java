@@ -1,9 +1,11 @@
 package tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.local.services;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Local;
 
+import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Banque;
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Categories;
 
 @Local
@@ -16,4 +18,5 @@ public interface CategoriesLocal {
 	
 	public void delete(Categories categories);
 	public Categories findById(int id);
-}
+	
+	}

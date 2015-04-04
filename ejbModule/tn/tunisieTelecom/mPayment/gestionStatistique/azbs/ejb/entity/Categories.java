@@ -18,7 +18,7 @@ public class Categories implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 	private String libelle;
-	@OneToMany(mappedBy="categories")
+	@OneToMany(fetch = FetchType.EAGER , mappedBy="categories")
 	private List<SousCategories> sousCategories = new ArrayList<SousCategories>();
 	private static final long serialVersionUID = 1L;
 

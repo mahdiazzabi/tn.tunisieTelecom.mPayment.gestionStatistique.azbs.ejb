@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Banque;
+import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Transaction;
 
 @Local
 public interface BanqueEJBLocal {

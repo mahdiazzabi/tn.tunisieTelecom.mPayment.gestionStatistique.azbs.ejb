@@ -7,7 +7,6 @@ import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Categories;
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.SousCategories;
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.local.services.SousCategotiesEJBLocal;
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.services.remote.SousCategotiesEJBRemote;

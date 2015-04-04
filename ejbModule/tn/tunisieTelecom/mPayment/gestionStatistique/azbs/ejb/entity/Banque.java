@@ -21,7 +21,7 @@ public class Banque implements Serializable {
 	private int id;
 	private String nom;
 	
-	@OneToMany (mappedBy="banque")
+	@OneToMany (fetch = FetchType.EAGER , mappedBy="banque")
 	private List<Transaction> transactions = new ArrayList<Transaction>();
 	
 	
