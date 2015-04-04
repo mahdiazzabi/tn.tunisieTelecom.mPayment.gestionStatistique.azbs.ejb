@@ -15,7 +15,6 @@ import javax.persistence.*;
  *
  */
 @Entity
-
 public class Produit implements Serializable {
 
 	   
@@ -26,7 +25,7 @@ public class Produit implements Serializable {
 	private String libelle;
 	@ManyToOne
 	private SousCategories sousCategories = new SousCategories() ;
-	@OneToMany(mappedBy="produit")
+	@OneToMany(mappedBy="produit" )
 	private List<Transaction> transactions = new ArrayList<Transaction>();
 	
 	

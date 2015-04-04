@@ -3,21 +3,19 @@ package tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.services;
 import java.util.List;
 
 import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
+import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Produit;
-import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.SousCategories;
-import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.User;
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.local.services.ProduitEJBLocal;
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.services.remote.ProduitEJBRemote;
 
 /**
  * Session Bean implementation class ProduitEJB
  */
-@Stateless
+@Singleton
 @LocalBean
 public class ProduitEJB implements ProduitEJBRemote, ProduitEJBLocal {
 
@@ -63,7 +61,7 @@ public class ProduitEJB implements ProduitEJBRemote, ProduitEJBLocal {
 		try {
 			return (Produit) query.getSingleResult();
 		} catch (Exception e) {
-			System.err.println(e.getMessage());
+			System.err.println("PRODUIT INOUJIDABLE " +e.getMessage());
 			return null;
 		}
 }

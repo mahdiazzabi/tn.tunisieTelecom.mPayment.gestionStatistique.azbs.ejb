@@ -3,7 +3,7 @@ package tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.services;
 import java.util.List;
 
 import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
+import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -14,7 +14,7 @@ import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.services.remote.Ba
 /**
  * Session Bean implementation class BanqueEJB
  */
-@Stateless
+@Singleton
 @LocalBean
 public class BanqueEJB implements BanqueEJBRemote, BanqueEJBLocal {
 

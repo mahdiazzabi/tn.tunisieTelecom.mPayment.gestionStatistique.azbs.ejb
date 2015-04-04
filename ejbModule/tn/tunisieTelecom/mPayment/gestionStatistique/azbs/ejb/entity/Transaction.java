@@ -12,12 +12,11 @@ import javax.persistence.*;
  *
  */
 @Entity
-
 public class Transaction implements Serializable {
 
 	   
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String id_transaction;
 	private String tel_source;
