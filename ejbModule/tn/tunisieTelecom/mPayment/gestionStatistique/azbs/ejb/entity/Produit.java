@@ -19,7 +19,8 @@ public class Produit implements Serializable {
 
 	   
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator="seq_Prod")
+	@SequenceGenerator(name="seq_Prod",sequenceName="SEQ_PRODUIT",allocationSize=1)
 	private Integer id;
 	private Integer ref ;
 	private String libelle;

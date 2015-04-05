@@ -15,7 +15,8 @@ import javax.persistence.*;
 public class Categories implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator="seq_Cat")
+	@SequenceGenerator(name="seq_Cat",sequenceName="SEQ_CAT",allocationSize=1)
 	private int id;
 	private String libelle;
 	@OneToMany(fetch = FetchType.EAGER , mappedBy="categories")

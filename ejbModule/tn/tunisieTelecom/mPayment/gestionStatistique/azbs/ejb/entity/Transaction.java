@@ -16,7 +16,8 @@ public class Transaction implements Serializable {
 
 	   
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(generator="seq_Transaction")
+	@SequenceGenerator(name="seq_Transaction",sequenceName="SEQ_TRANSACTION",allocationSize=1)
 	private int id;
 	private String id_transaction;
 	private String tel_source;

@@ -15,7 +15,8 @@ import javax.persistence.*;
 public class User implements Serializable {
    
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator="seq_User")
+	@SequenceGenerator(name="seq_User",sequenceName="SEQ_UTILISATEUR",allocationSize=1)
 	private int id;
 	private String nom;
 	private String prenom;

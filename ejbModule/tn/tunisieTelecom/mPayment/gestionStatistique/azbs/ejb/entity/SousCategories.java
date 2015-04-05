@@ -15,7 +15,8 @@ import javax.persistence.*;
 public class SousCategories implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator="seq_Sous_Cat")
+	@SequenceGenerator(name="seq_Sous_Cat",sequenceName="SEQ_SOUS_CAT",allocationSize=1)
 	private int id;
 	private String libelle;
 	@ManyToOne

@@ -17,7 +17,8 @@ public class Banque implements Serializable {
 
 	   
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(generator="seq_Banq")
+	@SequenceGenerator(name="seq_Banq",sequenceName="SEQ_BANQUE",allocationSize=1)
 	private int id;
 	private String nom;
 	
