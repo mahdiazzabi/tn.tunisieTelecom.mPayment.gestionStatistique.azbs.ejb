@@ -7,7 +7,7 @@ import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.User;
 @Local
 public interface UserEJBLocal {
 	
-	public User authentification(String login,String mdp);
+	public User doLogin(String login,String mdp);
 	
 	public void add (User user);
 	

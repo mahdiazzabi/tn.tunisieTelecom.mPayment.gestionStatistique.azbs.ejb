@@ -28,7 +28,7 @@ public class UserEJB implements UserEJBRemote, UserEJBLocal {
 	}
 
 	@Override
-	public User authentification(String login, String mdp) {
+	public User doLogin(String login, String mdp) {
 		Query query = entityManager
 				.createQuery(
 						"SELECT u FROM utilisateur u WHERE u.login=:login AND u.password =:password",

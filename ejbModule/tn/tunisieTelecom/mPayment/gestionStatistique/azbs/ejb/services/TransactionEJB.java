@@ -16,6 +16,7 @@ import javax.persistence.TypedQuery;
 
 import org.omg.CORBA.PRIVATE_MEMBER;
 
+import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Banque;
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Transaction;
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.local.services.TransactionEJBLocal;
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.services.remote.TransactionEJBRemote;
@@ -108,6 +109,21 @@ public class TransactionEJB implements TransactionEJBRemote,
 			etatSousCategories.add(etat);
 		}
 		return etatSousCategories;
+	}
+
+	@Override
+	public float calculCi(Banque banque, Date start, Date end) {
+		float resultat = 0 ;
+		TypedQuery<Object[]> q = entityManager
+				.createQuery(
+						"SELECT SUM(t.montant) FROM transaction t WHERE t.banque.id =: banque.id AND t.date BETWEEN :start AND :end ",
+						Object[].class).setParameter("banque", banque)
+				.setParameter("start", start).setParameter("end", end);
+		List<Object[]> resultList = q.getResultList();
+		for (Object[] objects : resultList) {
+			 resultat = Float.parseFloat(""+objects[0]) ; 
+		}
+		return resultat ;
 	}
 
 }
