@@ -21,10 +21,7 @@ public class Banque implements Serializable {
 	private String nom;
 
 	@OneToMany(mappedBy = "banque")
-	private List<Transaction> transactions = new ArrayList<Transaction>();
-	
-//	@OneToMany(mappedBy = "banque")
-//	private List<Fichier> fichiers = new ArrayList<Fichier>();
+	private List<Fichier> fichiers = new ArrayList<Fichier>();
 
 	private static final long serialVersionUID = 1L;
 
@@ -32,13 +29,13 @@ public class Banque implements Serializable {
 		super();
 	}
 
-//	public List<Fichier> getFichiers() {
-//		return fichiers;
-//	}
-//
-//	public void setFichiers(List<Fichier> fichiers) {
-//		this.fichiers = fichiers;
-//	}
+	public List<Fichier> getFichiers() {
+		return fichiers;
+	}
+
+	public void setFichiers(List<Fichier> fichiers) {
+		this.fichiers = fichiers;
+	}
 
 	public int getId() {
 		return this.id;
@@ -56,12 +53,5 @@ public class Banque implements Serializable {
 		this.nom = nom;
 	}
 
-	public List<Transaction> getTransactions() {
-		return transactions;
-	}
-
-	public void setTransactions(List<Transaction> transactions) {
-		this.transactions = transactions;
-	}
 
 }

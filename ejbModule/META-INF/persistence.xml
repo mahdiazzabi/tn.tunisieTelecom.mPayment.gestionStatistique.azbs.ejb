@@ -7,8 +7,10 @@
 	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Banque</class>
 	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Categories</class>
 	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Employees</class>
+	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Fichier</class>
 	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Produit</class>
 	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.SousCategories</class>
+	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Transaction</class>
 	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.User</class>
 	
 	<properties>

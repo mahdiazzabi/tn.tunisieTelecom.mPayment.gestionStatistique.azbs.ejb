@@ -13,7 +13,7 @@ import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.util.EtatSousCateg
 @Local
 public interface TransactionEJBLocal {
 
-	public void addListe(List<Transaction> transactions);
+	public boolean addListe(List<Transaction> transactions);
 
 	public void add(Transaction transaction);
 

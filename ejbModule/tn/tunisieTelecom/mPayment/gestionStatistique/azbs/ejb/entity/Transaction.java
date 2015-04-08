@@ -27,9 +27,7 @@ public class Transaction implements Serializable {
 	@ManyToOne
 	private Produit produit = new Produit();
 	@ManyToOne
-	private Banque banque = new Banque();
-//	@ManyToOne
-//	private Fichier fichier = new Fichier();
+	private Fichier fichier = new Fichier();
 
 	private static final long serialVersionUID = 1L;
 
@@ -37,13 +35,13 @@ public class Transaction implements Serializable {
 		super();
 	}
 
-//	public Fichier getFichier() {
-//		return fichier;
-//	}
-//
-//	public void setFichier(Fichier fichier) {
-//		this.fichier = fichier;
-//	}
+	public Fichier getFichier() {
+		return fichier;
+	}
+
+	public void setFichier(Fichier fichier) {
+		this.fichier = fichier;
+	}
 
 	public int getId() {
 		return this.id;
@@ -105,13 +103,6 @@ public class Transaction implements Serializable {
 		this.produit = produit;
 	}
 
-	public Banque getBanque() {
-		return banque;
-	}
-
-	public void setBanque(Banque banque) {
-		this.banque = banque;
-	}
 
 	public void setDate(Date date) {
 		this.date = date;

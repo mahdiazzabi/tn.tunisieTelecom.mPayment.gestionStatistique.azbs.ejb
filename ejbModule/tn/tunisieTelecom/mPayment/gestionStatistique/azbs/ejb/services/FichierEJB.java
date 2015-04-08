@@ -3,9 +3,10 @@ package tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.services;
 import java.util.List;
 
 import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
+import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Fichier;
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.local.services.FichierEJBLocal;
@@ -14,7 +15,7 @@ import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.services.remote.Fi
 /**
  * Session Bean implementation class FichierEJB
  */
-@Stateless
+@Singleton
 @LocalBean
 public class FichierEJB implements FichierEJBRemote, FichierEJBLocal {
 
@@ -52,7 +53,24 @@ public class FichierEJB implements FichierEJBRemote, FichierEJBLocal {
 
 	@Override
 	public List<Fichier> findAll() {
-		return entityManager.createQuery("SELECT f FROM fichier f ORDER BY date_traitement").getResultList();
+		return entityManager.createQuery(
+				"SELECT f FROM Fichier f ORDER BY date_traitement desc",
+				Fichier.class).getResultList();
+	}
+
+	@Override
+	public Fichier findByNom(String nom) {
+		Query query = entityManager.createQuery(
+				"SELECT f FROM Fichier f WHERE f.nom=:nom", Fichier.class)
+				.setParameter("nom", nom);
+		try {
+			return (Fichier) query.getSingleResult();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+
+			return null;
+		}
+
 	}
 
 }

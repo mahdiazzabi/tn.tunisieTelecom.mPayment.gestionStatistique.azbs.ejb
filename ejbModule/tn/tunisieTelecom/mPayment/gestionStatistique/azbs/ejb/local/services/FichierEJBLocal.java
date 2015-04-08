@@ -17,5 +17,8 @@ public interface FichierEJBLocal {
 
 	public Fichier findById(int id);
 
+	public Fichier findByNom(String nom);
+
 	public List<Fichier> findAll();
+
 }

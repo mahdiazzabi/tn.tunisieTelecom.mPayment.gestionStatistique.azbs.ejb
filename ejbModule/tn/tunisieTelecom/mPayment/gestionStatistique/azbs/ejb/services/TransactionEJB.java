@@ -39,7 +39,7 @@ public class TransactionEJB implements TransactionEJBRemote,
 	}
 
 	@Override
-	public void addListe(List<Transaction> transactions) {
+	public boolean addListe(List<Transaction> transactions) {
 		int i = 0;
 		try {
 			for (Transaction transaction : transactions) {
@@ -49,9 +49,11 @@ public class TransactionEJB implements TransactionEJBRemote,
 				entityManager.clear();
 			}
 		} catch (Exception e) {
+			
 			e.printStackTrace();
+			return false ;
 		}
-
+		return true ;
 	}
 
 	@Override
@@ -63,7 +65,7 @@ public class TransactionEJB implements TransactionEJBRemote,
 	public List<Etat> calculEtat(Date start, Date end, int id) {
 		TypedQuery<Object[]> q = entityManager
 				.createQuery(
-						"SELECT c.libelle,(SELECT count(t) as nbr FROM Transaction t WHERE t.banque.id =:id AND t.produit.sousCategories.categories.id=c.id AND t.date BETWEEN :start AND :end) as nbr,(SELECT sum(t.montant) as somme FROM Transaction t WHERE t.banque.id =:id AND t.produit.sousCategories.categories.id=c.id AND t.date BETWEEN :start AND :end) as somme, c.id FROM Categories c GROUP BY c.libelle",
+						"SELECT c.libelle,(SELECT count(t) as nbr FROM Transaction t WHERE t.fichier.banque.id =:id AND t.produit.sousCategories.categories.id=c.id AND t.date BETWEEN :start AND :end) as nbr,(SELECT sum(t.montant) as somme FROM Transaction t WHERE t.fichier.banque.id =:id AND t.produit.sousCategories.categories.id=c.id AND t.date BETWEEN :start AND :end) as somme, c.id FROM Categories c GROUP BY c.libelle",
 						Object[].class).setParameter("id", id)
 				.setParameter("start", start).setParameter("end", end);
 		List<Object[]> resultList = q.getResultList();
@@ -90,7 +92,7 @@ public class TransactionEJB implements TransactionEJBRemote,
 			Date end, int id_banque) {
 		TypedQuery<Object[]> q = entityManager
 				.createQuery(
-						"SELECT c.libelle,(SELECT count(t) as nbr FROM Transaction t WHERE t.banque.id =:id AND t.produit.sousCategories.id=c.id AND t.date BETWEEN :start AND :end) as nbr,(SELECT sum(t.montant) as somme FROM Transaction t WHERE t.banque.id =:id AND t.produit.sousCategories.id=c.id AND t.date BETWEEN :start AND :end) as somme FROM SousCategories c GROUP BY c.libelle",
+						"SELECT c.libelle,(SELECT count(t) as nbr FROM Transaction t WHERE t.fichier.banque.id =:id AND t.produit.sousCategories.id=c.id AND t.date BETWEEN :start AND :end) as nbr,(SELECT sum(t.montant) as somme FROM Transaction t WHERE t.fichier.banque.id =:id AND t.produit.sousCategories.id=c.id AND t.date BETWEEN :start AND :end) as somme FROM SousCategories c GROUP BY c.libelle",
 						Object[].class).setParameter("id", id_banque)
 				.setParameter("start", start).setParameter("end", end);
 		List<Object[]> resultList = q.getResultList();

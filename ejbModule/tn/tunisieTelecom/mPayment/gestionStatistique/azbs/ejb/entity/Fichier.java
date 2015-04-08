@@ -20,13 +20,14 @@ public class Fichier implements Serializable {
 	@SequenceGenerator(name = "seq_Fichier", sequenceName = "SEQ_FICHIER", allocationSize = 1)
 	private int id;
 	private String nom;
+	private Date date_fichier;
 	private Date date_traitement;
 	private String etat_traitement;
 	@ManyToOne
 	private Banque banque = new Banque();
 	@ManyToOne
 	private User user = new User();
-	@OneToMany
+	@OneToMany (mappedBy = "fichier")
 	private List<Transaction> transactions = new ArrayList<Transaction>();
 
 	private static final long serialVersionUID = 1L;
@@ -34,7 +35,7 @@ public class Fichier implements Serializable {
 	public Fichier() {
 		super();
 	}
-
+	
 	public List<Transaction> getTransactions() {
 		return transactions;
 	}
@@ -89,6 +90,14 @@ public class Fichier implements Serializable {
 
 	public void setEtat_traitement(String etat_traitement) {
 		this.etat_traitement = etat_traitement;
+	}
+
+	public Date getDate_fichier() {
+		return date_fichier;
+	}
+
+	public void setDate_fichier(Date date_fichier) {
+		this.date_fichier = date_fichier;
 	}
 
 }
