@@ -21,5 +21,6 @@ public interface TransactionEJBLocal {
 
 	public List<EtatSousCategorie> calculeEtatSousCategorie(Date start,Date end,int id_banque);
 	
-	public float calculCi(Banque banque , Date start , Date end);
+	
+	public Double calculStatAllBanques(Date start, Date end); 
 }

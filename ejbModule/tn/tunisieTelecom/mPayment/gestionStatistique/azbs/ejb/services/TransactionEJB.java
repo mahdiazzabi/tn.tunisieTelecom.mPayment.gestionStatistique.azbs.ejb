@@ -49,11 +49,11 @@ public class TransactionEJB implements TransactionEJBRemote,
 				entityManager.clear();
 			}
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
-			return false ;
+			return false;
 		}
-		return true ;
+		return true;
 	}
 
 	@Override
@@ -63,18 +63,24 @@ public class TransactionEJB implements TransactionEJBRemote,
 
 	@Override
 	public List<Etat> calculEtat(Date start, Date end, int id) {
+		String succes = "S";
 		TypedQuery<Object[]> q = entityManager
 				.createQuery(
-						"SELECT c.libelle,(SELECT count(t) as nbr FROM Transaction t WHERE t.fichier.banque.id =:id AND t.produit.sousCategories.categories.id=c.id AND t.date BETWEEN :start AND :end) as nbr,(SELECT sum(t.montant) as somme FROM Transaction t WHERE t.fichier.banque.id =:id AND t.produit.sousCategories.categories.id=c.id AND t.date BETWEEN :start AND :end) as somme, c.id FROM Categories c GROUP BY c.libelle",
+						"SELECT c.libelle,(SELECT count(t) as nbr FROM Transaction t WHERE t.fichier.banque.id =:id AND t.etat =:succes AND t.produit.sousCategories.categories.id=c.id AND t.date BETWEEN :start AND :end) as nbr,(SELECT sum(t.montant) as somme FROM Transaction t WHERE t.fichier.banque.id =:id AND  t.etat =:succes AND t.produit.sousCategories.categories.id=c.id AND t.date BETWEEN :start AND :end) as somme, c.id FROM Categories c GROUP BY c.libelle",
 						Object[].class).setParameter("id", id)
-				.setParameter("start", start).setParameter("end", end);
+				.setParameter("succes", succes).setParameter("start", start)
+				.setParameter("end", end);
 		List<Object[]> resultList = q.getResultList();
 		List<Etat> etats = new ArrayList<Etat>();
 		Etat etat;
 		for (Object[] objects : resultList) {
 			etat = new Etat();
 			etat.setLibelle((String) objects[0]);
-			etat.setNbr(Integer.parseInt("" + objects[1]));
+			System.err.println(etat.getLibelle() + (String) objects[0]);
+			if (objects[2] == null)
+				etat.setNbr(0);
+			else
+				etat.setNbr(Integer.parseInt("" + objects[1]));
 
 			if (objects[2] == null)
 				etat.setSomme(0);
@@ -90,18 +96,23 @@ public class TransactionEJB implements TransactionEJBRemote,
 	@Override
 	public List<EtatSousCategorie> calculeEtatSousCategorie(Date start,
 			Date end, int id_banque) {
+		String succes = "S";
 		TypedQuery<Object[]> q = entityManager
 				.createQuery(
-						"SELECT c.libelle,(SELECT count(t) as nbr FROM Transaction t WHERE t.fichier.banque.id =:id AND t.produit.sousCategories.id=c.id AND t.date BETWEEN :start AND :end) as nbr,(SELECT sum(t.montant) as somme FROM Transaction t WHERE t.fichier.banque.id =:id AND t.produit.sousCategories.id=c.id AND t.date BETWEEN :start AND :end) as somme FROM SousCategories c GROUP BY c.libelle",
+						"SELECT c.libelle,(SELECT count(t) as nbr FROM Transaction t WHERE t.fichier.banque.id =:id AND t.etat =:succes AND t.produit.sousCategories.id=c.id AND t.date BETWEEN :start AND :end) as nbr,(SELECT sum(t.montant) as somme FROM Transaction t WHERE t.fichier.banque.id =:id AND t.etat =:succes AND t.produit.sousCategories.id=c.id AND t.date BETWEEN :start AND :end) as somme FROM SousCategories c GROUP BY c.libelle",
 						Object[].class).setParameter("id", id_banque)
-				.setParameter("start", start).setParameter("end", end);
+				.setParameter("succes", succes).setParameter("start", start)
+				.setParameter("end", end);
 		List<Object[]> resultList = q.getResultList();
 		List<EtatSousCategorie> etatSousCategories = new ArrayList<EtatSousCategorie>();
 		EtatSousCategorie etat;
 		for (Object[] objects : resultList) {
 			etat = new EtatSousCategorie();
 			etat.setLibelle((String) objects[0]);
-			etat.setNbr(Integer.parseInt("" + objects[1]));
+			if (objects[2] == null)
+				etat.setNbr(0);
+			else
+				etat.setNbr(Integer.parseInt("" + objects[1]));
 
 			if (objects[2] == null)
 				etat.setSomme(0);
@@ -114,18 +125,9 @@ public class TransactionEJB implements TransactionEJBRemote,
 	}
 
 	@Override
-	public float calculCi(Banque banque, Date start, Date end) {
-		float resultat = 0 ;
-		TypedQuery<Object[]> q = entityManager
-				.createQuery(
-						"SELECT SUM(t.montant) FROM transaction t WHERE t.banque.id =: banque.id AND t.date BETWEEN :start AND :end ",
-						Object[].class).setParameter("banque", banque)
-				.setParameter("start", start).setParameter("end", end);
-		List<Object[]> resultList = q.getResultList();
-		for (Object[] objects : resultList) {
-			 resultat = Float.parseFloat(""+objects[0]) ; 
-		}
-		return resultat ;
+	public Double calculStatAllBanques(Date start, Date end) {
+
+		return 0.0;
 	}
 
 }

@@ -80,7 +80,12 @@ public class Transaction implements Serializable {
 	}
 
 	public void setEtat(String etat) {
-		this.etat = etat;
+		if (etat.equals("PST") || etat.equals("PST1") || etat.equals("PST2")
+				|| etat.equals("PST3") || etat.equals("S")) {
+			this.etat = "S";
+		}else
+			this.etat = "E";
+		
 	}
 
 	public Double getMontant() {
@@ -102,7 +107,6 @@ public class Transaction implements Serializable {
 	public void setProduit(Produit produit) {
 		this.produit = produit;
 	}
-
 
 	public void setDate(Date date) {
 		this.date = date;
