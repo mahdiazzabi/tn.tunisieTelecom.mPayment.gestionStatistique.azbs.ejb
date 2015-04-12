@@ -1,6 +1,7 @@
 package tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.services;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -17,6 +18,7 @@ import javax.persistence.TypedQuery;
 import org.omg.CORBA.PRIVATE_MEMBER;
 
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Banque;
+import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.SousCategories;
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Transaction;
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.local.services.TransactionEJBLocal;
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.services.remote.TransactionEJBRemote;
@@ -125,9 +127,73 @@ public class TransactionEJB implements TransactionEJBRemote,
 	}
 
 	@Override
-	public Double calculStatAllBanques(Date start, Date end) {
+	public Object[] calculStatBanque(Date start, Date end, int idBanque) {
+		String succes = "S";
 
-		return 0.0;
+		try {
+			TypedQuery<Object[]> q = entityManager
+					.createQuery(
+							"SELECT count(t) as nbr , sum(t.montant) as somme FROM Transaction t WHERE t.fichier.banque.id =:id AND  t.etat =:succes AND t.date BETWEEN :start AND :end",
+							Object[].class).setParameter("start", start)
+					.setParameter("end", end).setParameter("id", idBanque)
+					.setParameter("succes", succes);
+			return q.getSingleResult();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			return null;
+		}
+
 	}
 
+	@Override
+	public Object[] calculStatBanqueSousCat(Date start, Date end, int idBanque,
+			int idSousCat) {
+		String succes = "S";
+
+		try {
+			TypedQuery<Object[]> q = entityManager
+					.createQuery(
+							"SELECT count(t) as nbr , sum(t.montant) as somme FROM Transaction t WHERE t.fichier.banque.id =:idBanque AND  t.etat =:succes AND t.date BETWEEN :start AND :end AND t.produit.sousCategories.id =:idSousCat",
+							Object[].class).setParameter("start", start)
+					.setParameter("end", end)
+					.setParameter("idBanque", idBanque)
+					.setParameter("succes", succes)
+					.setParameter("idSousCat", idSousCat);
+			return q.getSingleResult();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			return null;
+		}
+
+	}
+
+	@Override
+	public double calculStatMensuelle(Date start, int idSouscat) {
+		String succes = "S";
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(start);
+		calendar.add(calendar.HOUR_OF_DAY, +23);
+		calendar.add(calendar.MINUTE, 59);
+		calendar.add(calendar.SECOND, 59);
+		Date end = calendar.getTime();
+
+		try {
+			TypedQuery<Object[]> q = entityManager
+					.createQuery(
+							"SELECT count(t) as nbr, sum(t.montant) as somme FROM Transaction t WHERE t.etat =:succes AND t.date BETWEEN :start AND :end AND t.produit.sousCategories.id =:idSouscat",
+							Object[].class).setParameter("start", start)
+					.setParameter("end", end).setParameter("succes", succes)
+					.setParameter("idSouscat", idSouscat);
+			Object[] object = q.getSingleResult();
+			if (object[1] == null) {
+				return 0.0;
+			} else {
+				System.err.println(Double.parseDouble("" + object[1]));
+				return Double.parseDouble("" + object[1]);
+			}
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			return 0.0;
+		}
+	}
 }

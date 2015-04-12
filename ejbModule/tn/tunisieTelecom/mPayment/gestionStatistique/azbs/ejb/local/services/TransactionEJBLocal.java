@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Banque;
+import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.SousCategories;
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Transaction;
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.util.Etat;
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.util.EtatSousCategorie;
@@ -22,5 +23,9 @@ public interface TransactionEJBLocal {
 	public List<EtatSousCategorie> calculeEtatSousCategorie(Date start,Date end,int id_banque);
 	
 	
-	public Double calculStatAllBanques(Date start, Date end); 
+	public Object[] calculStatBanque(Date start, Date end , int idBanque); 
+	
+	public Object[] calculStatBanqueSousCat(Date start, Date end , int idBanque , int idSusCat);
+	
+	public double calculStatMensuelle(Date date , int idSouscat);
 }
