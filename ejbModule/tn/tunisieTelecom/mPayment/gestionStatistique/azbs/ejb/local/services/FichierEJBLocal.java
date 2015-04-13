@@ -1,5 +1,6 @@
 package tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.local.services;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Local;
@@ -20,5 +21,7 @@ public interface FichierEJBLocal {
 	public Fichier findByNom(String nom);
 
 	public List<Fichier> findAll();
+	
+	public Boolean verif_traitement_for_stat(Date start, Date end , int idBanque );
 
 }

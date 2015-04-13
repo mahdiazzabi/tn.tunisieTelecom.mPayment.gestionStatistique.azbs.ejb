@@ -1,5 +1,6 @@
 package tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.services;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -7,6 +8,7 @@ import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Fichier;
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.local.services.FichierEJBLocal;
@@ -71,6 +73,33 @@ public class FichierEJB implements FichierEJBRemote, FichierEJBLocal {
 			return null;
 		}
 
+	}
+
+	@Override
+	public Boolean verif_traitement_for_stat(Date start, Date end, int idBanque) {
+		try {
+			
+			List<Fichier> fichiers = entityManager
+					.createQuery(
+							"SELECT f FROM Fichier f WHERE f.banque.id =:idBanque AND f.date_fichier BETWEEN :start AND :end",
+							Fichier.class).setParameter("start", start)
+					.setParameter("end", end)
+					.setParameter("idBanque", idBanque).getResultList();
+			System.err.println("-----------------------------------------------");
+			final long MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+			long diff = Math.abs(end.getTime() - start.getTime());
+			long numberOfDay = ((long)diff/MILLISECONDS_PER_DAY)+1;
+			System.err.println(fichiers.size());
+			if (fichiers.size()< numberOfDay) {
+				return false;
+			}
+			
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			return false;
+		}
+
+		return true;
 	}
 
 }
