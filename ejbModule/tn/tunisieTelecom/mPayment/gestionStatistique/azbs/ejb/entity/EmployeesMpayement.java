@@ -9,7 +9,7 @@ import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.User;
  *
  */
 @Entity
-
+@DiscriminatorValue("EMPLOYE_MPAYEMENT")
 public class EmployeesMpayement extends User implements Serializable {
 
 	

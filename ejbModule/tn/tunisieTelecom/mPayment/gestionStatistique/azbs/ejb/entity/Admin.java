@@ -9,6 +9,7 @@ import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.User;
  *
  */
 @Entity
+@DiscriminatorValue("ADMIN")
 public class Admin extends User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
