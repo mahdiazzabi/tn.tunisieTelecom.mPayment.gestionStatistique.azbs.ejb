@@ -1,5 +1,7 @@
 package tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.local.services;
 
+import java.util.List;
+
 import javax.ejb.Local;
 
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.User;
@@ -15,6 +17,7 @@ public interface UserEJBLocal {
 	
 	public void delete (User user);
 	
+	public List<User> findAll();
 	
 	
 }

@@ -1,5 +1,7 @@
 package tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.services;
 
+import java.util.List;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
@@ -56,6 +58,12 @@ public class UserEJB implements UserEJBRemote, UserEJBLocal {
 	@Override
 	public void delete(User user) {
 		entityManager.remove(entityManager.merge(user));
+	}
+
+	@Override
+	public List<User> findAll() {
+		
+		return entityManager.createQuery("SELECT u FROM User u", User.class).getResultList();
 	}
 
 }

@@ -11,6 +11,7 @@ import javax.persistence.*;
  * Entity implementation class for Entity: User
  *
  */
+
 @Entity(name = "utilisateur")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "typeUser")
