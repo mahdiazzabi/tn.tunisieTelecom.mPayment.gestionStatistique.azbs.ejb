@@ -45,6 +45,10 @@ public class TransactionEJB implements TransactionEJBRemote,
 		int i = 0;
 		try {
 			for (Transaction transaction : transactions) {
+				System.err.println("DATE : " + transaction.getDate() + " id"
+						+ transaction.getId_transaction() + " montant: "
+						+ transaction.getMontant() + " produit "
+						+ transaction.getProduit().getLibelle());
 				entityManager.persist(transaction);
 				System.err.println("OK TRANSACTION  :" + i++);
 				entityManager.flush();
@@ -195,5 +199,36 @@ public class TransactionEJB implements TransactionEJBRemote,
 			System.err.println(e.getMessage());
 			return 0.0;
 		}
+	}
+
+	@Override
+	public List<Etat> calculEtatAllBanques(Date start, Date end) {
+		String succes = "S";
+		TypedQuery<Object[]> q = entityManager
+				.createQuery(
+						"SELECT b.nom , (SELECT COUNT(t) FROM Transaction t WHERE t.fichier.banque.id = b.id AND t.etat =:succes AND t.date BETWEEN :start AND :end ) ,(SELECT SUM(t.montant) FROM Transaction t WHERE t.fichier.banque.id = b.id AND t.etat =:succes AND t.date BETWEEN :start AND :end), b.id FROM Banque b GROUP BY b.nom",
+						Object[].class).setParameter("succes", succes)
+				.setParameter("start", start).setParameter("end", end);
+		List<Object[]> resultList = q.getResultList();
+		List<Etat> etats = new ArrayList<Etat>();
+		Etat etat;
+		for (Object[] objects : resultList) {
+			etat = new Etat();
+			etat.setLibelle((String) objects[0]);
+			System.err.println(etat.getLibelle() + (String) objects[0]);
+			if (objects[2] == null)
+				etat.setNbr(0);
+			else
+				etat.setNbr(Integer.parseInt("" + objects[1]));
+
+			if (objects[2] == null)
+				etat.setSomme(0);
+			else
+				etat.setSomme(Float.parseFloat("" + objects[2]));
+
+			etat.setId(Integer.parseInt(objects[3] + ""));
+			etats.add(etat);
+		}
+		return etats;
 	}
 }

@@ -24,4 +24,6 @@ public interface FichierEJBLocal {
 	
 	public Boolean verif_traitement_for_stat(Date start, Date end , int idBanque );
 
+	public Boolean verif_traitement_for_stat(Date start, Date end );
+
 }

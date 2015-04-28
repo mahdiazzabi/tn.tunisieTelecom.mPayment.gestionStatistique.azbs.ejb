@@ -16,6 +16,7 @@ public interface SousCategotiesEJBLocal {
 	public void update(SousCategories sousCategories);
 
 	public void remove(SousCategories sousCategories);
+
 	public SousCategories findById(int id);
 
 }

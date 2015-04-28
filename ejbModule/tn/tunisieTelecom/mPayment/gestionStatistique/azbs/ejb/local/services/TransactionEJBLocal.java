@@ -28,4 +28,6 @@ public interface TransactionEJBLocal {
 	public Object[] calculStatBanqueSousCat(Date start, Date end , int idBanque , int idSusCat);
 	
 	public double calculStatMensuelle(Date date , int idSouscat);
+	
+	public List<Etat> calculEtatAllBanques(Date start, Date end) ; 
 }

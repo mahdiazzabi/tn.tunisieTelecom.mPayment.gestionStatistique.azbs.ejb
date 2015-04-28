@@ -3,6 +3,7 @@ package tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.services;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
@@ -28,6 +29,9 @@ public class FichierEJB implements FichierEJBRemote, FichierEJBLocal {
 	@PersistenceContext(name = "tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb")
 	EntityManager entityManager;
 
+	@EJB
+	BanqueEJB banqueEJB ;
+	
 	public FichierEJB() {
 		// TODO Auto-generated constructor stub
 	}
@@ -78,22 +82,48 @@ public class FichierEJB implements FichierEJBRemote, FichierEJBLocal {
 	@Override
 	public Boolean verif_traitement_for_stat(Date start, Date end, int idBanque) {
 		try {
-			
+
 			List<Fichier> fichiers = entityManager
 					.createQuery(
 							"SELECT f FROM Fichier f WHERE f.banque.id =:idBanque AND f.date_fichier BETWEEN :start AND :end",
 							Fichier.class).setParameter("start", start)
 					.setParameter("end", end)
 					.setParameter("idBanque", idBanque).getResultList();
-			System.err.println("-----------------------------------------------");
+			System.err
+					.println("-----------------------------------------------");
 			final long MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
 			long diff = Math.abs(end.getTime() - start.getTime());
-			long numberOfDay = ((long)diff/MILLISECONDS_PER_DAY)+1;
+			long numberOfDay = ((long) diff / MILLISECONDS_PER_DAY) + 1;
 			System.err.println(fichiers.size());
-			if (fichiers.size()< numberOfDay) {
+			if (fichiers.size() < numberOfDay) {
 				return false;
 			}
-			
+
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			return false;
+		}
+
+		return true;
+	}
+
+	@Override
+	public Boolean verif_traitement_for_stat(Date start, Date end) {
+		try {
+			int nbr_banque = banqueEJB.findAll().size() ;
+			List<Fichier> fichiers = entityManager
+					.createQuery(
+							"SELECT f FROM Fichier f WHERE f.date_fichier BETWEEN :start AND :end ",
+							Fichier.class).setParameter("start", start)
+					.setParameter("end", end).getResultList();
+			final long MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+			long diff = Math.abs(end.getTime() - start.getTime());
+			long numberOfDay = ((long) diff / MILLISECONDS_PER_DAY) + 1;
+			System.err.println(fichiers.size());
+			if ((fichiers.size() / numberOfDay) < nbr_banque) {
+				return false;
+			}
+
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 			return false;
