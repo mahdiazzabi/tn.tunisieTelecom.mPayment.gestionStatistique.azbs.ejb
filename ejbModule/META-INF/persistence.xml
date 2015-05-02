@@ -6,15 +6,18 @@
 	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Admin</class>
 	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Banque</class>
 	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Categories</class>
+	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Departement</class>
 	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Employees</class>
+	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.EmployeesMpayement</class>
 	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Fichier</class>
 	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Produit</class>
 	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.SousCategories</class>
+	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Statistique</class>
 	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.Transaction</class>
 	<class>tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.User</class>
 	
 	<properties>
-		<property name="hibernate.hbm2ddl.auto" value="Update"/>
+		<property name="hibernate.hbm2ddl.auto" value="update"/>
 		<property name="hibernate.show_sql" value="true"/>
 		<property name="hibernate.format_sql" value="true"/>
 	</properties>

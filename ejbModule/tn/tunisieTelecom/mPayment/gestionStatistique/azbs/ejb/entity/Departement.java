@@ -16,12 +16,12 @@ public class Departement implements Serializable {
 
 	@Id
 	@GeneratedValue(generator = "seq_dep")
-	@SequenceGenerator(name = "seq_dep", sequenceName = "SEQ_DEPARTEMENT", allocationSize = 1)
+	@SequenceGenerator(name = "seq_dep", sequenceName = "SEQ_DEPARTEMENT", allocationSize = 2)
 	private int id;
 	private String nom;
 	private static final long serialVersionUID = 1L;
 	@OneToMany(mappedBy = "departement")
-	private List<Employees> employees = new ArrayList<Employees>();
+	private List<User> users = new ArrayList<User>();
 	public Departement() {
 		super();
 	}   
@@ -39,11 +39,11 @@ public class Departement implements Serializable {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public List<Employees> getEmployees() {
-		return employees;
+	public List<User> getUsers() {
+		return users;
 	}
-	public void setEmployees(List<Employees> employees) {
-		this.employees = employees;
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
-   
+	
 }

@@ -47,7 +47,13 @@ public class UserEJB implements UserEJBRemote, UserEJBLocal {
 
 	@Override
 	public void add(User user) {
-		entityManager.persist(user);
+		System.err.println("okkkkk");
+		try {
+			entityManager.persist(user);
+
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
 	}
 
 	@Override
@@ -62,8 +68,9 @@ public class UserEJB implements UserEJBRemote, UserEJBLocal {
 
 	@Override
 	public List<User> findAll() {
-		
-		return entityManager.createQuery("SELECT u FROM User u", User.class).getResultList();
+
+		return entityManager.createQuery("SELECT u FROM utilisateur u",
+				User.class).getResultList();
 	}
 
 }

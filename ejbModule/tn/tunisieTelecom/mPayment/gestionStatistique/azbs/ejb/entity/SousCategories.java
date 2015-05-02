@@ -23,6 +23,9 @@ public class SousCategories implements Serializable {
 	private Categories categories = new Categories();
 	@OneToMany(mappedBy="sousCategories")
 	private List<Produit> produits = new ArrayList<Produit>();
+	@OneToMany(mappedBy="sousCategories")
+	private List<Statistique> statistiques = new ArrayList<Statistique>();
+	
 	
 	private static final long serialVersionUID = 1L;
 
@@ -52,6 +55,22 @@ public class SousCategories implements Serializable {
 
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
+	}
+
+	public List<Produit> getProduits() {
+		return produits;
+	}
+
+	public void setProduits(List<Produit> produits) {
+		this.produits = produits;
+	}
+
+	public List<Statistique> getStatistiques() {
+		return statistiques;
+	}
+
+	public void setStatistiques(List<Statistique> statistiques) {
+		this.statistiques = statistiques;
 	}
 
 }

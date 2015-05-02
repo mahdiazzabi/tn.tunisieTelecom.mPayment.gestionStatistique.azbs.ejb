@@ -19,12 +19,16 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(generator = "seq_User")
-	@SequenceGenerator(name = "seq_User", sequenceName = "SEQ_UTILISATEUR", allocationSize = 1)
+	@SequenceGenerator(name = "seq_User", sequenceName = "SEQ_UTILISATEUR", allocationSize = 2)
 	private int id;
 	private String nom;
 	private String prenom;
 	private String login;
 	private String password;
+	
+	@ManyToOne
+	private Departement departement = new Departement() ;
+	
 	@OneToMany(mappedBy = "user")
 	private List<Fichier> fichiers = new ArrayList<Fichier>();
 
@@ -82,4 +86,13 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
+	public Departement getDepartement() {
+		return departement;
+	}
+
+	public void setDepartement(Departement departement) {
+		this.departement = departement;
+	}
+
+	
 }

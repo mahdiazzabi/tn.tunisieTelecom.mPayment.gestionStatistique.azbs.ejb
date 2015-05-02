@@ -24,6 +24,7 @@ public class Produit implements Serializable {
 	private Integer id;
 	private Integer ref ;
 	private String libelle;
+	
 	@ManyToOne
 	private SousCategories sousCategories = new SousCategories() ;
 	@OneToMany(mappedBy="produit" )

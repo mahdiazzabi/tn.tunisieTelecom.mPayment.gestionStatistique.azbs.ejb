@@ -1,7 +1,6 @@
 package tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity;
 
 import java.io.Serializable;
-import java.lang.String;
 import javax.persistence.*;
 import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.User;
 
@@ -14,20 +13,12 @@ import tn.tunisieTelecom.mPayment.gestionStatistique.azbs.ejb.entity.User;
 public class Employees extends User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	@ManyToOne
-	private Departement departement = new Departement() ;
 	
 	public Employees() {
 		super();
 	}
 
-	public Departement getDepartement() {
-		return departement;
-	}
-
-	public void setDepartement(Departement departement) {
-		this.departement = departement;
-	}   
+	
 	
    
 }
