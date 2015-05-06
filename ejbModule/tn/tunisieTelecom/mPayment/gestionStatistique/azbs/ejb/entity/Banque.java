@@ -54,7 +54,7 @@ public class Banque implements Serializable {
 	}
 
 	public void setNom(String nom) {
-		this.nom = nom;
+		this.nom = nom.toUpperCase();
 	}
 
 	public List<Statistique> getStatistiques() {

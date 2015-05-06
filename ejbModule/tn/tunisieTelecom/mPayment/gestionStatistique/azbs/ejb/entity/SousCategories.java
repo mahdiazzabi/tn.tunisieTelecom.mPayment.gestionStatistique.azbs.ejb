@@ -54,7 +54,7 @@ public class SousCategories implements Serializable {
 	}
 
 	public void setLibelle(String libelle) {
-		this.libelle = libelle;
+		this.libelle = libelle.toUpperCase();
 	}
 
 	public List<Produit> getProduits() {

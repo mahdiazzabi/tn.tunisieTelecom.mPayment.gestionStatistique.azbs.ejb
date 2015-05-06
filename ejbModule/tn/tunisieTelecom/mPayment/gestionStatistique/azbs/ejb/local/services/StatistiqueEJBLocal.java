@@ -12,6 +12,15 @@ public interface StatistiqueEJBLocal {
 	
 	
 	
+	public void add(Statistique statistique);
+	
+	public void delete(Statistique statistique);
+	
+	public List<Statistique> findByIdBanqueJour(Date date , int idBanque);
+	
 	public List<Object[]> statistiquesCategories(Date start , Date end , int idCat);
+	
+	
+	
 
 }

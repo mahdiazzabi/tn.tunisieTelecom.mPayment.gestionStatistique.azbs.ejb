@@ -43,4 +43,20 @@ public class StatistiqueEJB implements StatistiqueEJBRemote,
 		return resultList;
 	}
 
+	@Override
+	public void add(Statistique statistique) {
+			entityManager.persist(statistique);
+	}
+
+	@Override
+	public List<Statistique> findByIdBanqueJour(Date date, int idBanque) {
+
+	return entityManager.createQuery("SELECT s FROM Statistique s WHERE s.journee=:date AND s.banque.id=:idBanque", Statistique.class).setParameter("date", date).setParameter("idBanque", idBanque).getResultList();
+	}
+
+	@Override
+	public void delete(Statistique statistique) {
+		entityManager.remove(entityManager.merge(statistique));
+	}
+
 }

@@ -55,7 +55,7 @@ public class Produit implements Serializable {
 	}
 
 	public void setLibelle(String libelle) {
-		this.libelle = libelle;
+		this.libelle = libelle.toUpperCase();
 	}
 	public SousCategories getSousCategories() {
 		return sousCategories;

@@ -42,15 +42,9 @@ public class TransactionEJB implements TransactionEJBRemote,
 
 	@Override
 	public boolean addListe(List<Transaction> transactions) {
-		int i = 0;
 		try {
 			for (Transaction transaction : transactions) {
-				System.err.println("DATE : " + transaction.getDate() + " id"
-						+ transaction.getId_transaction() + " montant: "
-						+ transaction.getMontant() + " produit "
-						+ transaction.getProduit().getLibelle());
 				entityManager.persist(transaction);
-				System.err.println("OK TRANSACTION  :" + i++);
 				entityManager.flush();
 				entityManager.clear();
 			}

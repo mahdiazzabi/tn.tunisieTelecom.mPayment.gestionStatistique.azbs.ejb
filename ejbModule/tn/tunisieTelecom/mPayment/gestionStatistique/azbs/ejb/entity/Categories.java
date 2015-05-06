@@ -47,7 +47,7 @@ public class Categories implements Serializable {
 	}
 
 	public void setLibelle(String libelle) {
-		this.libelle = libelle;
+		this.libelle = libelle.toUpperCase();
 	}
 
 }

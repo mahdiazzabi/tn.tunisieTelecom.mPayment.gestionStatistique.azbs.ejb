@@ -23,6 +23,7 @@ public class User implements Serializable {
 	private int id;
 	private String nom;
 	private String prenom;
+	@Column(unique=true)
 	private String login;
 	private String password;
 	
