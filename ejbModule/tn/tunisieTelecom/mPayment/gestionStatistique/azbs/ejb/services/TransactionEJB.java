@@ -49,8 +49,6 @@ public class TransactionEJB implements TransactionEJBRemote,
 				entityManager.clear();
 			}
 		} catch (Exception e) {
-
-			e.printStackTrace();
 			return false;
 		}
 		return true;
@@ -127,7 +125,6 @@ public class TransactionEJB implements TransactionEJBRemote,
 	@Override
 	public Object[] calculStatBanque(Date start, Date end, int idBanque) {
 		String succes = "S";
-
 		try {
 			TypedQuery<Object[]> q = entityManager
 					.createQuery(
@@ -140,14 +137,12 @@ public class TransactionEJB implements TransactionEJBRemote,
 			System.err.println(e.getMessage());
 			return null;
 		}
-
 	}
 
 	@Override
 	public Object[] calculStatBanqueSousCat(Date start, Date end, int idBanque,
 			int idSousCat) {
 		String succes = "S";
-
 		try {
 			TypedQuery<Object[]> q = entityManager
 					.createQuery(
@@ -162,7 +157,6 @@ public class TransactionEJB implements TransactionEJBRemote,
 			System.err.println(e.getMessage());
 			return null;
 		}
-
 	}
 
 	@Override
@@ -174,7 +168,6 @@ public class TransactionEJB implements TransactionEJBRemote,
 		calendar.add(calendar.MINUTE, 59);
 		calendar.add(calendar.SECOND, 59);
 		Date end = calendar.getTime();
-
 		try {
 			TypedQuery<Object[]> q = entityManager
 					.createQuery(

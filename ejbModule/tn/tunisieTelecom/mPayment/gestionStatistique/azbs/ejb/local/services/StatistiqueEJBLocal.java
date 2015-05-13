@@ -18,8 +18,15 @@ public interface StatistiqueEJBLocal {
 	
 	public List<Statistique> findByIdBanqueJour(Date date , int idBanque);
 	
+	public List<Object[]> statSousCat(Date start , Date end , int idSousCat);
+	
+	public List<Object[]> statSousCat(Date start , Date end , int idSousCat , int idBanque);
+	
 	public List<Object[]> statistiquesCategories(Date start , Date end , int idCat);
 	
+	public Object[] statistiquesBanques(Date start , Date end , int idBanque );
+	
+	public List<Object[]> statistiquesGlobaleBanques(Date start , Date end , int idBanque);
 	
 	
 
